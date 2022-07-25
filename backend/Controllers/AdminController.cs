@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using IdoApi.Models;
 
 namespace IDO.Controllers
@@ -52,7 +48,7 @@ namespace IDO.Controllers
         // PUT: api/Admin/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAdmin(int id, Admin admin)
+        public async Task<ActionResult<Admin>> PutAdmin(int id,[FromForm] Admin admin) //FormForm is to accept FormData Objects
         {
             if (id != admin.id)
             {
@@ -77,22 +73,46 @@ namespace IDO.Controllers
                 }
             }
 
-            return NoContent();
+            return admin;
         }
 
         // POST: api/Admin
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Admin>> PostAdmin(Admin admin)
+        public async Task<ActionResult<Admin>> PostAdmin([FromForm]Admin admin) //FormForm is to accept FormData Objects
         {
           if (_context.Admins == null)
           {
               return Problem("Entity set 'IdoContext.Admins'  is null.");
           }
+
+          // Uploading Image
+          if (ModelState.IsValid)
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+
+            //create folder if not exist
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            //get file extension
+            FileInfo fileInfo = new FileInfo(admin.Avatar.FileName);
+            string date = DateTime.Now.ToString("HH-mm-ss-dd-MM-yyyy");
+            string fileName = admin.Avatar.FileName + '-' + date + fileInfo.Extension;
+
+            string fileNameWithPath = Path.Combine(path, fileName);
+
+            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+            {
+                await admin.Avatar.CopyToAsync(stream);
+                // stream.Close();
+            }
+
             _context.Admins.Add(admin);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAdmin", new { id = admin.id }, admin);
+        }
+            
+            return CreatedAtAction(nameof(GetAdmin), new { id = admin.id }, admin);
         }
 
         // DELETE: api/Admin/5
@@ -112,7 +132,7 @@ namespace IDO.Controllers
             _context.Admins.Remove(admin);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Content("Admin with ID of " +id+ " has been Deleted Successfully");
         }
 
         private bool AdminExists(int id)

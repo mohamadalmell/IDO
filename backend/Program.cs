@@ -5,8 +5,7 @@ using IdoApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddXmlSerializerFormatters();
 builder.Services.AddDbContext<IdoContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("IdoContext")));
 //builder.Services.AddSwaggerGen(c =>

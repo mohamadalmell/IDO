@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "54ohcC8gA6UlZt77ciLe4iAhplgTXuuZc1uyam1IY1jnSessfmN0HV8mhzpmKvUF4i0DAuzXJCLAN/hDvH3hAg==",
+  "dgSpecHash": "l+5F/xY1N1KDqVZzv1cWviiNNZRsNt93mDPYVWz1BI/83ppwjArs37luLUadSDJ/xPRa5DEoYcrUNFSDUvafQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\IDO.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,7 @@
     "C:\\Users\\Mohamad\\.nuget\\packages\\microsoft.codeanalysis.visualbasic.workspaces\\4.0.0\\microsoft.codeanalysis.visualbasic.workspaces.4.0.0.nupkg.sha512",
     "C:\\Users\\Mohamad\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.0.0\\microsoft.codeanalysis.workspaces.common.4.0.0.nupkg.sha512",
     "C:\\Users\\Mohamad\\.nuget\\packages\\microsoft.codeanalysis.workspaces.msbuild\\4.0.0\\microsoft.codeanalysis.workspaces.msbuild.4.0.0.nupkg.sha512",
+    "C:\\Users\\Mohamad\\.nuget\\packages\\microsoft.composition\\1.0.30\\microsoft.composition.1.0.30.nupkg.sha512",
     "C:\\Users\\Mohamad\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Mohamad\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Mohamad\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
@@ -191,5 +192,16 @@
     "C:\\Users\\Mohamad\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Mohamad\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Composition 1.0.30' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Composition",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

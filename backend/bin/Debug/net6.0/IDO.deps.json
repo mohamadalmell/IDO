@@ -8,12 +8,14 @@
     ".NETCoreApp,Version=v6.0": {
       "IDO/1.0.0": {
         "dependencies": {
+          "Microsoft.Composition": "1.0.30",
           "Microsoft.EntityFrameworkCore.Design": "6.0.7",
           "Microsoft.EntityFrameworkCore.InMemory": "6.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.7",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.7",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.7",
-          "Swashbuckle.AspNetCore": "6.2.3"
+          "Swashbuckle.AspNetCore": "6.2.3",
+          "System.Composition": "1.0.31"
         },
         "runtime": {
           "IDO.dll": {}
@@ -778,6 +780,7 @@
           }
         }
       },
+      "Microsoft.Composition/1.0.30": {},
       "Microsoft.CSharp/4.5.0": {},
       "Microsoft.Data.SqlClient/2.1.4": {
         "dependencies": {
@@ -2600,6 +2603,13 @@
       "sha512": "sha512-0LYNKESZPK4AQmAXwn8l2e8UF/rYpT0pvceEhiTVjurjQ9Y7pGdUZ5E30r8knxYtT5/9ZESR7wKf/AU00r95Mw==",
       "path": "microsoft.codeanalysis.workspaces.msbuild/4.0.0",
       "hashPath": "microsoft.codeanalysis.workspaces.msbuild.4.0.0.nupkg.sha512"
+    },
+    "Microsoft.Composition/1.0.30": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IDOxST2DCUziePSD2vK3Z7LI6e1rejJCp21/rKZ8fdsyTcq9SfnAV8udi0GSIpjO9wwSLZx9Kfc7co3PTs7IlA==",
+      "path": "microsoft.composition/1.0.30",
+      "hashPath": "microsoft.composition.1.0.30.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",

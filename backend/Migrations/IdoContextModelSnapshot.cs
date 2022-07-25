@@ -23,16 +23,16 @@ namespace IDO.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Avatar")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -47,6 +47,7 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -64,9 +65,11 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DueDate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Estimate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("Priorityid")
@@ -76,6 +79,7 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -96,6 +100,7 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -110,6 +115,7 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");

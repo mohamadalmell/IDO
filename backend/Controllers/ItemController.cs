@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IdoApi.Models;
@@ -11,11 +6,11 @@ namespace IDO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController : ControllerBase
+    public class ItemController : ControllerBase
     {
         private readonly IdoContext _context;
 
-        public ItemsController(IdoContext context)
+        public ItemController(IdoContext context)
         {
             _context = context;
         }
@@ -28,6 +23,7 @@ namespace IDO.Controllers
           {
               return NotFound();
           }
+
             return await _context.Items.ToListAsync();
         }
 
@@ -52,8 +48,13 @@ namespace IDO.Controllers
         // PUT: api/Items/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<Item>> PutItem(int id,[FromForm] Item item)
+        public async Task<ActionResult<Item>> PutItem(int id,[FromForm] Item item) //FormForm is to accept FormData Objects
         {
+            if (id != item.id)
+            {
+                return BadRequest();
+            }
+
             _context.Entry(item).State = EntityState.Modified;
 
             try
@@ -108,7 +109,7 @@ namespace IDO.Controllers
             _context.Items.Remove(item);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Content("Item with ID of " +id+ " has been Deleted Successfully");
         }
 
         private bool ItemExists(int id)

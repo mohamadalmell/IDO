@@ -4,7 +4,7 @@
 
 namespace IDO.Migrations
 {
-    public partial class AddedSeeder : Migration
+    public partial class createdAllControllers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

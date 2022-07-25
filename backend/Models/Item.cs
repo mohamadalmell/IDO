@@ -5,11 +5,15 @@ namespace IdoApi.Models
     public class Item
     {
         public int id {get; set;}
+        
+        [Required]
         public string? Title {get; set;}
 
+        [Required]
         [DataType(DataType.Date)] // specifies the type of the data (date)
         public DateTime? DueDate {get; set;}
 
+        [Required]
         [DataType(DataType.Duration)] // specifies the type of the data (duration)
         public string? Estimate {get; set;}
 

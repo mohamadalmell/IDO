@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IDO.Migrations
 {
     [DbContext(typeof(IdoContext))]
-    [Migration("20220724165845_AddedSeeder")]
-    partial class AddedSeeder
+    [Migration("20220725182826_createdAllControllers")]
+    partial class createdAllControllers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,16 +25,16 @@ namespace IDO.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Avatar")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -49,6 +49,7 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -62,16 +63,34 @@ namespace IDO.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("Categoryid")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime?>("DueDate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Estimate")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("Priorityid")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Statusid")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
+
+                    b.HasIndex("Categoryid");
+
+                    b.HasIndex("Priorityid");
+
+                    b.HasIndex("Statusid");
 
                     b.ToTable("Items");
                 });
@@ -83,6 +102,7 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
@@ -97,11 +117,33 @@ namespace IDO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
                     b.ToTable("Statuses");
+                });
+
+            modelBuilder.Entity("IdoApi.Models.Item", b =>
+                {
+                    b.HasOne("IdoApi.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("Categoryid");
+
+                    b.HasOne("IdoApi.Models.Priority", "Priority")
+                        .WithMany()
+                        .HasForeignKey("Priorityid");
+
+                    b.HasOne("IdoApi.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("Statusid");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Priority");
+
+                    b.Navigation("Status");
                 });
 #pragma warning restore 612, 618
         }

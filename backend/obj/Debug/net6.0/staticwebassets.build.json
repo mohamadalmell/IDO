@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "khkJoscyoqNlUxYs6Q3ioPicc2ecdSzejwjaaVLV8+w=",
+  "Hash": "USJYOLGwo8uJ0atJ1udbutKQsqDB2zEx+cXeTenkZ04=",
   "Source": "IDO",
   "BasePath": "_content/IDO",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "IDO\\wwwroot",
+      "Source": "IDO",
+      "ContentRoot": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\wwwroot\\",
+      "BasePath": "_content/IDO",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }
