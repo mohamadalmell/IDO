@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\IDO.csproj": {}
+    "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\IDO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\IDO.csproj": {
+    "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\IDO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\IDO.csproj",
+        "projectUniqueName": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\IDO.csproj",
         "projectName": "IDO",
-        "projectPath": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\IDO.csproj",
+        "projectPath": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\IDO.csproj",
         "packagesPath": "C:\\Users\\Mohamad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\obj\\",
+        "outputPath": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mohamad\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,28 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
