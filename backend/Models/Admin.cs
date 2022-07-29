@@ -1,26 +1,28 @@
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations; // To allow us to DataType Attributes
 
 namespace IdoApi.Models
 {
     public class Admin
     {
+        public Admin()
+        {
+            Avatars = new Collection<Avatar>();   
+        }
+
         public int id {get; set;}
 
         [Required]
-        public string? Name {get; set;}
+        public string Name {get; set;} = string.Empty;
 
         [DataType(DataType.EmailAddress)] // specifies the type of the data (Email)
         [Required]
-        public  string Email {get; set;}
+        public string Email {get; set;} = string.Empty;
 
         [DataType(DataType.Password)] // specifies the type of the data (Password)
         [Required]
-        public  string Password {get; set;}
+        public  string Password {get; set;} = string.Empty;
 
-        [DataType(DataType.Upload)] // specifies the type of the data (File)
-        [Required]
-        [NotMappedAttribute]
-        public  IFormFile Avatar {get; set;}
+        public ICollection<Avatar> Avatars { get; set; }
     }
 }

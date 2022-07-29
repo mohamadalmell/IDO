@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IdoApi.Models;
 
 namespace IDO.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ItemController : ControllerBase
@@ -85,11 +87,13 @@ namespace IDO.Controllers
           {
               return Problem("Entity set 'IdoContext.Items'  is null.");
           }
-        
+
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
 
+            // _context.Entry(category.id).State = EntityState.Modified;
             return CreatedAtAction(nameof(GetItem), new { id = item.id }, item);
+
         }
 
         // DELETE: api/Items/5

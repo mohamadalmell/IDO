@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
 using IdoApi.Models;
 
 namespace IDO.Controllers
@@ -46,7 +45,6 @@ namespace IDO.Controllers
         }
 
         // PUT: api/Admin/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<ActionResult<Admin>> PutAdmin(int id,[FromForm] Admin admin) //FormForm is to accept FormData Objects
         {
@@ -77,7 +75,6 @@ namespace IDO.Controllers
         }
 
         // POST: api/Admin
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Admin>> PostAdmin([FromForm]Admin admin) //FormForm is to accept FormData Objects
         {
@@ -86,31 +83,8 @@ namespace IDO.Controllers
               return Problem("Entity set 'IdoContext.Admins'  is null.");
           }
 
-          // Uploading Image
-          if (ModelState.IsValid)
-        {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
-
-            //create folder if not exist
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-
-            //get file extension
-            FileInfo fileInfo = new FileInfo(admin.Avatar.FileName);
-            string date = DateTime.Now.ToString("HH-mm-ss-dd-MM-yyyy");
-            string fileName = admin.Avatar.FileName + '-' + date + fileInfo.Extension;
-
-            string fileNameWithPath = Path.Combine(path, fileName);
-
-            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
-            {
-                await admin.Avatar.CopyToAsync(stream);
-                // stream.Close();
-            }
-
             _context.Admins.Add(admin);
             await _context.SaveChangesAsync();
-        }
             
             return CreatedAtAction(nameof(GetAdmin), new { id = admin.id }, admin);
         }

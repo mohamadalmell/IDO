@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace IDO.Migrations
+namespace IDO_Test.Migrations
 {
     [DbContext(typeof(IdoContext))]
     partial class IdoContextModelSnapshot : ModelSnapshot
@@ -40,6 +40,26 @@ namespace IDO.Migrations
                     b.ToTable("Admins");
                 });
 
+            modelBuilder.Entity("IdoApi.Models.Avatar", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Adminid")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("Adminid");
+
+                    b.ToTable("Avatars");
+                });
+
             modelBuilder.Entity("IdoApi.Models.Category", b =>
                 {
                     b.Property<int>("id")
@@ -61,7 +81,7 @@ namespace IDO.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Categoryid")
+                    b.Property<int>("Categoryid")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DueDate")
@@ -72,10 +92,10 @@ namespace IDO.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("Priorityid")
+                    b.Property<int>("Priorityid")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Statusid")
+                    b.Property<int>("Statusid")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -123,25 +143,43 @@ namespace IDO.Migrations
                     b.ToTable("Statuses");
                 });
 
+            modelBuilder.Entity("IdoApi.Models.Avatar", b =>
+                {
+                    b.HasOne("IdoApi.Models.Admin", null)
+                        .WithMany("Avatars")
+                        .HasForeignKey("Adminid");
+                });
+
             modelBuilder.Entity("IdoApi.Models.Item", b =>
                 {
                     b.HasOne("IdoApi.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("Categoryid");
+                        .HasForeignKey("Categoryid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("IdoApi.Models.Priority", "Priority")
                         .WithMany()
-                        .HasForeignKey("Priorityid");
+                        .HasForeignKey("Priorityid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("IdoApi.Models.Status", "Status")
                         .WithMany()
-                        .HasForeignKey("Statusid");
+                        .HasForeignKey("Statusid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
                     b.Navigation("Priority");
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("IdoApi.Models.Admin", b =>
+                {
+                    b.Navigation("Avatars");
                 });
 #pragma warning restore 612, 618
         }

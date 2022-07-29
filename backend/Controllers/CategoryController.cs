@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IdoApi.Models;
@@ -50,7 +45,6 @@ namespace IDO.Controllers
         }
 
         // PUT: api/Category/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<ActionResult<Category>> PutCategory(int id,[FromForm] Category category) //FormForm is to accept FormData Objects
         {
@@ -76,7 +70,6 @@ namespace IDO.Controllers
         }
 
         // POST: api/Category
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory([FromForm]Category category) //FormForm is to accept FormData Objects
         {

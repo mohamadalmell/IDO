@@ -11,6 +11,7 @@ namespace IdoApi.Models
         }
 
         public DbSet<Admin> Admins { get; set; } = null!;
+        public DbSet<Avatar> Avatars { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Item> Items { get; set; } = null!;
         public DbSet<Priority> Priorities { get; set; } = null!;

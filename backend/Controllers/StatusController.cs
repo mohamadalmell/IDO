@@ -46,7 +46,6 @@ namespace IDO.Controllers
         }
 
         // PUT: api/Statuses/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<ActionResult<Status>> PutStatus(int id,[FromForm] Status status) //FormForm is to accept FormData Objects
         {
@@ -77,7 +76,6 @@ namespace IDO.Controllers
         }
 
         // POST: api/Statuses
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Status>> PostStatus([FromForm]Status status) //FormForm is to accept FormData Objects
         {

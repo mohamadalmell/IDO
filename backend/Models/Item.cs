@@ -18,12 +18,15 @@ namespace IdoApi.Models
         public string? Estimate {get; set;}
 
         // One Item belongs only to one Category but one Category may have multiple Items
+        public int Categoryid { get; set; }
         public Category? Category{get; set;}
 
         // One Item belongs only to one Priority but one Priority may have multiple Items
+        public int Priorityid { get; set; }
         public Priority? Priority{get; set;}
 
         // One Item belongs only to one Status but one Status may have multiple Items
+        public int Statusid { get; set; }
         public Status? Status{get; set;}
     }
 }
