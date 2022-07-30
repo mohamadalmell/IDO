@@ -91,7 +91,6 @@ namespace IDO.Controllers
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
 
-            // _context.Entry(category.id).State = EntityState.Modified;
             return CreatedAtAction(nameof(GetItem), new { id = item.id }, item);
 
         }
