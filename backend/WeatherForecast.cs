@@ -1,4 +1,4 @@
-namespace IDO;
+namespace IDO_Test;
 
 public class WeatherForecast
 {
