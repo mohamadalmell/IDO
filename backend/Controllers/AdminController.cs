@@ -23,6 +23,11 @@ namespace IDO.Controllers
           {
               return NotFound();
           }
+
+          var admins = _context.Admins
+              .Include(i => i.Avatars)
+              .ToList();
+
             return await _context.Admins.ToListAsync();
         }
 
@@ -34,14 +39,16 @@ namespace IDO.Controllers
           {
               return NotFound();
           }
-            var admin = await _context.Admins.FindAsync(id);
+            var admin = _context.Admins
+                .Include(i => i.Avatars)
+                .FirstOrDefaultAsync(i => i.id == id);
 
             if (admin == null)
             {
                 return NotFound();
             }
 
-            return admin;
+            return Ok(new {data = admin});
         }
 
         // PUT: api/Admin/5

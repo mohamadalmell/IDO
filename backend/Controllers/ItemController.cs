@@ -5,7 +5,7 @@ using IdoApi.Models;
 
 namespace IDO.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ItemController : ControllerBase
@@ -21,10 +21,15 @@ namespace IDO.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-          if (_context.Items == null)
-          {
-              return NotFound();
-          }
+            if (_context.Items == null)
+            {
+                return NotFound();
+            }
+
+            var items = _context.Items
+              .Include(i => i.Status)
+              .Include(i => i.Priority)
+              .ToList();
 
             return await _context.Items.ToListAsync();
         }
@@ -33,24 +38,28 @@ namespace IDO.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
-          if (_context.Items == null)
-          {
-              return NotFound();
-          }
-            var item = await _context.Items.FindAsync(id);
+            if (_context.Items == null)
+            {
+                return NotFound();
+            }
+            
+            var item = _context.Items
+                .Include(i => i.Status)
+                .Include(i => i.Priority)
+                .FirstOrDefaultAsync(i => i.id == id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            return item;
+            return Ok(new { data = item });
         }
 
         // PUT: api/Items/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<ActionResult<Item>> PutItem(int id,[FromForm] Item item) //FormForm is to accept FormData Objects
+        public async Task<ActionResult<Item>> PutItem(int id, [FromForm] Item item) //FormForm is to accept FormData Objects
         {
             if (id != item.id)
             {
@@ -58,7 +67,7 @@ namespace IDO.Controllers
             }
 
             _context.Entry(item).State = EntityState.Modified;
-
+            
             try
             {
                 await _context.SaveChangesAsync();
@@ -75,18 +84,18 @@ namespace IDO.Controllers
                 }
             }
 
-            return item;  
+            return item;
         }
 
         // POST: api/Items
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Item>> PostItem([FromForm]Item item) //FormForm is to accept FormData Objects
+        public async Task<ActionResult<Item>> PostItem([FromForm] Item item) //FormForm is to accept FormData Objects
         {
-          if (_context.Items == null)
-          {
-              return Problem("Entity set 'IdoContext.Items'  is null.");
-          }
+            if (_context.Items == null)
+            {
+                return Problem("Entity set 'IdoContext.Items'  is null.");
+            }
 
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
@@ -112,7 +121,7 @@ namespace IDO.Controllers
             _context.Items.Remove(item);
             await _context.SaveChangesAsync();
 
-            return Content("Item with ID of " +id+ " has been Deleted Successfully");
+            return Content("Item with ID of " + id + " has been Deleted Successfully");
         }
 
         private bool ItemExists(int id)

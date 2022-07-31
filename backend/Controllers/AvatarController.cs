@@ -84,8 +84,11 @@ namespace IDO.Controllers
           }
 
           var admin = await _context.Admins.FirstOrDefaultAsync(x=> x.id == id);
-
+            
            var uploadsFolderPath = @"C:\Users\Mohamad\OneDrive\Desktop\IDO\backend\wwwroot\Files\";
+
+            //create folder if not exist
+            if(!Directory.Exists(uploadsFolderPath))  Directory.CreateDirectory(uploadsFolderPath);
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(avatar.FileName);
             var filePath = Path.Combine(uploadsFolderPath, fileName);
             using (var stream = new FileStream(filePath, FileMode.Create))

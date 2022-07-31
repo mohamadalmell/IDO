@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IDO_Test.Migrations
 {
     [DbContext(typeof(IdoContext))]
-    [Migration("20220729081214_firstMigration")]
-    partial class firstMigration
+    [Migration("20220731181150_New")]
+    partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,36 +62,19 @@ namespace IDO_Test.Migrations
                     b.ToTable("Avatars");
                 });
 
-            modelBuilder.Entity("IdoApi.Models.Category", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("IdoApi.Models.Item", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Categoryid")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Category")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("DueDate")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Estimate")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Priorityid")
@@ -101,12 +84,9 @@ namespace IDO_Test.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
-
-                    b.HasIndex("Categoryid");
 
                     b.HasIndex("Priorityid");
 
@@ -154,12 +134,6 @@ namespace IDO_Test.Migrations
 
             modelBuilder.Entity("IdoApi.Models.Item", b =>
                 {
-                    b.HasOne("IdoApi.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("Categoryid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("IdoApi.Models.Priority", "Priority")
                         .WithMany()
                         .HasForeignKey("Priorityid")
@@ -171,8 +145,6 @@ namespace IDO_Test.Migrations
                         .HasForeignKey("Statusid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
 
                     b.Navigation("Priority");
 

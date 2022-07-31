@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IDO_Test.Migrations
 {
-    public partial class firstMigration : Migration
+    public partial class New : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,19 +22,6 @@ namespace IDO_Test.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Admins", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,22 +75,16 @@ namespace IDO_Test.Migrations
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
-                    DueDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Estimate = table.Column<string>(type: "TEXT", nullable: false),
-                    Categoryid = table.Column<int>(type: "INTEGER", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Category = table.Column<string>(type: "TEXT", nullable: true),
+                    Estimate = table.Column<string>(type: "TEXT", nullable: true),
                     Priorityid = table.Column<int>(type: "INTEGER", nullable: false),
                     Statusid = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Items_Categories_Categoryid",
-                        column: x => x.Categoryid,
-                        principalTable: "Categories",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Items_Priorities_Priorityid",
                         column: x => x.Priorityid,
@@ -122,11 +103,6 @@ namespace IDO_Test.Migrations
                 name: "IX_Avatars_Adminid",
                 table: "Avatars",
                 column: "Adminid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Items_Categoryid",
-                table: "Items",
-                column: "Categoryid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_Priorityid",
@@ -149,9 +125,6 @@ namespace IDO_Test.Migrations
 
             migrationBuilder.DropTable(
                 name: "Admins");
-
-            migrationBuilder.DropTable(
-                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Priorities");

@@ -21,7 +21,7 @@ namespace IDO_Test.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Admin _admin)
+        public async Task<IActionResult> Post([FromForm]Admin _admin)
         {
             if (_admin != null && _admin.Email != null && _admin.Password != null)
             {

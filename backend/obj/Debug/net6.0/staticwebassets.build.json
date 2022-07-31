@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "00SHNockxYGlg063J+Q3m22SsAMeBCR+lET/vSFwZ+Y=",
+  "Hash": "wPeZIw2D6RXYJEbJ6mdixZ+T/xCPEowUYyqZpfMW2H0=",
   "Source": "IDO_Test",
   "BasePath": "_content/IDO_Test",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "IDO_Test\\wwwroot",
+      "Source": "IDO_Test",
+      "ContentRoot": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\wwwroot\\",
+      "BasePath": "_content/IDO_Test",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\wwwroot\\Files\\28f8ad05-0472-4bbe-bec8-09258b5b68c9.png",
+      "SourceId": "IDO_Test",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\wwwroot\\",
+      "BasePath": "_content/IDO_Test",
+      "RelativePath": "Files/28f8ad05-0472-4bbe-bec8-09258b5b68c9.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\28f8ad05-0472-4bbe-bec8-09258b5b68c9.png"
+    },
+    {
+      "Identity": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\wwwroot\\Files\\d3cd1529-81cd-4c8c-af78-45ed314f83c4.png",
+      "SourceId": "IDO_Test",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mohamad\\OneDrive\\Desktop\\IDO\\backend\\wwwroot\\",
+      "BasePath": "_content/IDO_Test",
+      "RelativePath": "Files/d3cd1529-81cd-4c8c-af78-45ed314f83c4.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Files\\d3cd1529-81cd-4c8c-af78-45ed314f83c4.png"
+    }
+  ]
 }
