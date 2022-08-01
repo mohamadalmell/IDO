@@ -24,7 +24,7 @@ import Profile from "../../assets/Bitmap.png";
 import Profile2X from "../../assets/Bitmap2X.png";
 import Logout from "../../assets/Logout.svg";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 
 export default function Navbar(props) {
   const [isHover, setIsHover] = useState(false);
@@ -84,7 +84,7 @@ export default function Navbar(props) {
                   onClick={() => {
                     if (localStorage.getItem("token") != null) {
                       localStorage.removeItem("token");
-                      window.location.replace("/");
+                      return <Navigate to='/' />
                     }
                   }}
                 >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   MainContainer,
   LeftContainer,
@@ -10,25 +10,26 @@ import {
 } from "./styles";
 import { colors, connection } from "../../config/config";
 import loginBg from "../../assets/loginBg.png";
-import { NavLink } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 
 export default function LoginPage(props) {
   const [admin, setAdmin] = useState({});
-  const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
+
     let data = new FormData();
     data.append("email", admin.email);
     data.append("password", admin.password);
-    console.log(data);
 
     axios
       .post(`${connection.connectionString}/token`, data)
       .then((res) => {
-        setToken(res.data);
-        localStorage.setItem("token", token);
+        setIsLoggedIn(!isLoggedIn);
+        console.log(res.data);
+        localStorage.setItem("token", res.data);
       })
       .catch((err) => console.error(err));
   }
@@ -46,8 +47,8 @@ export default function LoginPage(props) {
   }
   return (
     <>
+      {isLoggedIn && <Navigate to="/dashboard" />}
       <MainContainer>
-        {console.log(token)}
         <LeftContainer bgImage={loginBg} bgColor={colors.loginPage} />
         <RightContainer>
           <RightContainerWrapper>
@@ -60,7 +61,7 @@ export default function LoginPage(props) {
             >
               Time to Work!
             </h1>
-            <LoginForm>
+            <LoginForm onSubmit={handleSubmit}>
               <label htmlFor="email">Email</label>
               <Inputs
                 onChange={handleChange}
@@ -77,10 +78,7 @@ export default function LoginPage(props) {
                 id="password"
                 inputColor={colors.loginPage}
               />
-
-              <Button onClick={() => handleSubmit()}>
-                SIGN IN{token && setInterval(()=>{window.location.replace("/dashboard")}, 2000) }
-              </Button>
+              <Button value="SIGN IN" type="submit" />
             </LoginForm>
           </RightContainerWrapper>
         </RightContainer>
