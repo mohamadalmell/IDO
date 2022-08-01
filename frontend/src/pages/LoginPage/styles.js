@@ -44,7 +44,7 @@ export const Inputs = styled.input`
   height: 38px;
 `;
 
-export const Button = styled.div`
+export const Button = styled.input`
   width: 100%;
   background: #b6a3c2;
   height: 38px;
